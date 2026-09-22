@@ -1,0 +1,19 @@
+[Unit]
+Description=DC Coms Encrypted Ops Bot
+After=network-online.target dccoms-synapse.service dccoms-ops-collector.service
+Wants=network-online.target dccoms-synapse.service dccoms-ops-collector.service
+
+[Service]
+Type=simple
+
+ExecStartPre=-/usr/bin/podman rm -f dccoms-ops-bot
+
+ExecStart=/usr/bin/podman run --rm --name dccoms-ops-bot --network host --env-file /etc/dccoms/dccoms-ops.env --read-only --tmpfs /tmp:rw,noexec,nosuid,size=32m --cap-drop=all --security-opt=no-new-privileges --pids-limit=128 --memory=256m -v /data/dccoms/ops-bot:/data/dccoms/ops-bot:Z localhost/dccoms-ops-bot:0.1
+
+ExecStop=-/usr/bin/podman stop -t 10 dccoms-ops-bot
+
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

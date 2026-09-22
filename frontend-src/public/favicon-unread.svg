@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect x="3" y="3" width="58" height="58" rx="15" fill="#15131a"/>
+  <rect x="3" y="3" width="58" height="58" rx="15" fill="none" stroke="#863bff" stroke-width="4"/>
+  <text x="32" y="40" text-anchor="middle" fill="#ffffff"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="25" font-weight="700" letter-spacing="-1">DC</text>
+  <circle cx="52" cy="12" r="10" fill="#f6b73c"/>
+  <circle cx="52" cy="12" r="6" fill="#ffffff"/>
+</svg>

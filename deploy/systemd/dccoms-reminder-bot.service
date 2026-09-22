@@ -1,0 +1,19 @@
+[Unit]
+Description=DC Coms Encrypted Reminder Bot
+After=network-online.target dccoms-synapse.service
+Wants=network-online.target dccoms-synapse.service
+
+[Service]
+Type=simple
+
+ExecStartPre=-/usr/bin/podman rm -f dccoms-reminder-bot
+
+ExecStart=/usr/bin/podman run --rm --name dccoms-reminder-bot --network host --env-file /etc/dccoms/dccoms-reminder.env --read-only --tmpfs /tmp:rw,noexec,nosuid,size=32m --cap-drop=all --security-opt=no-new-privileges --pids-limit=128 --memory=256m -v /data/dccoms/reminder-bot:/data/dccoms/reminder-bot:Z localhost/dccoms-reminder-bot:0.1
+
+ExecStop=-/usr/bin/podman stop -t 10 dccoms-reminder-bot
+
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

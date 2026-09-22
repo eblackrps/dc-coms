@@ -1,0 +1,19 @@
+[Unit]
+Description=DC Coms PostgreSQL
+After=network-online.target
+Wants=network-online.target
+
+[Container]
+Image=__POSTGRES_IMAGE__
+ContainerName=dccoms-postgres
+Network=dccoms.network
+EnvironmentFile=/etc/dccoms/postgres.env
+Volume=/data/dccoms/postgres:/var/lib/postgresql/data:Z
+
+[Service]
+Restart=always
+RestartSec=5
+TimeoutStopSec=120
+
+[Install]
+WantedBy=multi-user.target

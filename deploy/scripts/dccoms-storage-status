@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+echo
+echo "DC Coms Storage"
+echo "==============="
+df -hT /data
+echo
+echo "DC Coms usage:"
+du -sh /data/dccoms/* 2>/dev/null | sort -h
+echo
+echo "Containers:"
+podman system df
+echo
+echo "Journal:"
+journalctl --disk-usage
+echo

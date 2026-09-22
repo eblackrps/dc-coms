@@ -1,0 +1,88 @@
+server {
+    listen 443 ssl;
+    server_name __DC_COMS_FQDN__;
+
+    ssl_certificate __TLS_CERT_PATH__;
+    ssl_certificate_key __TLS_KEY_PATH__;
+
+    ssl_protocols TLSv1.2 TLSv1.3;
+
+    add_header Strict-Transport-Security "max-age=31536000" always;
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header X-Frame-Options "DENY" always;
+    add_header Referrer-Policy "no-referrer" always;
+    add_header Permissions-Policy "camera=(), microphone=(), geolocation=()" always;
+
+    client_max_body_size 100M;
+
+    location ~ ^(/_matrix|/_synapse/client) {
+        proxy_pass http://127.0.0.1:8008;
+
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_set_header X-Forwarded-Proto https;
+
+        proxy_read_timeout 600s;
+    }
+
+    location ^~ /api/password-reset/ {
+        proxy_pass http://127.0.0.1:8011/;
+
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+        client_max_body_size 32k;
+
+        add_header Cache-Control "no-store" always;
+        add_header Strict-Transport-Security "max-age=31536000" always;
+        add_header X-Content-Type-Options "nosniff" always;
+        add_header X-Frame-Options "DENY" always;
+        add_header Referrer-Policy "no-referrer" always;
+        add_header Permissions-Policy "camera=(), microphone=(), geolocation=()" always;
+    }
+
+    location = /api/admin/delete-room {
+        proxy_pass http://127.0.0.1:8010;
+
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header Authorization $http_authorization;
+        proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_set_header X-Forwarded-Proto https;
+
+        proxy_read_timeout 60s;
+    }
+
+    location ^~ /assets/ {
+        root __DC_COMS_WEB_ROOT__;
+        try_files $uri =404;
+
+        add_header Cache-Control "public, max-age=31536000, immutable";
+        add_header X-Content-Type-Options "nosniff" always;
+    }
+
+    location = /config.js {
+        root __DC_COMS_WEB_ROOT__;
+        try_files /config.js =404;
+
+        add_header Cache-Control "no-store, no-cache, must-revalidate" always;
+    }
+
+    location = /index.html {
+        root __DC_COMS_WEB_ROOT__;
+        try_files /index.html =404;
+
+        add_header Cache-Control "no-store, no-cache, must-revalidate" always;
+    }
+
+    location / {
+        root __DC_COMS_WEB_ROOT__;
+        try_files $uri $uri/ /index.html;
+
+        add_header Cache-Control "no-store, no-cache, must-revalidate" always;
+    }
+}

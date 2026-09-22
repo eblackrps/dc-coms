@@ -1,0 +1,150 @@
+#!/usr/bin/env bash
+
+main() {
+  SRC="/data/dccoms/web-src"
+  DEST="/data/dccoms/preview"
+  RETENTION_DAYS=30
+
+  CURRENT_ASSETS="$(
+    mktemp
+  )" || return 1
+
+  echo
+  echo "===== BUILD DC COMS FRONTEND ====="
+
+  if ! podman run --rm \
+    -v "$SRC:/app:Z" \
+    -w /app \
+    docker.io/library/node:24-bookworm \
+    bash -lc '
+      corepack enable &&
+      corepack prepare pnpm@12.4.2 --activate &&
+      pnpm build
+    '
+  then
+    rm -f "$CURRENT_ASSETS"
+    return 1
+  fi
+
+
+  if ! test -f \
+    "$SRC/dist/index.html"
+  then
+    echo "dist/index.html is missing."
+    rm -f "$CURRENT_ASSETS"
+    return 1
+  fi
+
+
+  if ! test -d \
+    "$SRC/dist/assets"
+  then
+    echo "dist/assets is missing."
+    rm -f "$CURRENT_ASSETS"
+    return 1
+  fi
+
+
+  echo
+  echo "===== RECORD CURRENT BUILD ASSETS ====="
+
+  find \
+    "$SRC/dist/assets" \
+    -maxdepth 1 \
+    -type f \
+    -printf '%f\n' \
+    | sort -u \
+    > "$CURRENT_ASSETS"
+
+
+  echo
+  echo "===== COPY CURRENT ASSETS ====="
+
+  mkdir -p \
+    "$DEST/assets"
+
+  if ! rsync -a \
+    "$SRC/dist/assets/" \
+    "$DEST/assets/"
+  then
+    rm -f "$CURRENT_ASSETS"
+    return 1
+  fi
+
+
+  echo
+  echo "===== DEPLOY APPLICATION SHELL ====="
+
+  if ! rsync -a \
+    --delete \
+    --exclude '/assets/' \
+    "$SRC/dist/" \
+    "$DEST/"
+  then
+    rm -f "$CURRENT_ASSETS"
+    return 1
+  fi
+
+
+  echo
+  echo "===== PRUNE ASSETS OLDER THAN 30 DAYS ====="
+
+  while IFS= read -r -d '' FILE
+  do
+    NAME="$(
+      basename "$FILE"
+    )"
+
+    if grep -Fxq \
+      "$NAME" \
+      "$CURRENT_ASSETS"
+    then
+      continue
+    fi
+
+    rm -f \
+      "$FILE"
+
+  done < <(
+    find \
+      "$DEST/assets" \
+      -maxdepth 1 \
+      -type f \
+      -mtime "+${RETENTION_DAYS}" \
+      -print0
+  )
+
+
+  rm -f \
+    "$CURRENT_ASSETS"
+
+
+  echo
+  echo "===== RESTORE SELINUX LABELS ====="
+
+  restorecon -Rv \
+    "$DEST" \
+    >/dev/null
+
+
+  echo
+  echo "===== CURRENT BUILD ASSETS ====="
+
+  find \
+    "$SRC/dist/assets" \
+    -maxdepth 1 \
+    -type f \
+    -printf '%f\n' \
+    | sort
+
+
+  echo
+  echo "========================================"
+  echo " DC COMS FRONTEND DEPLOYED SAFELY"
+  echo " Previous hashed assets retained 30 days"
+  echo "========================================"
+
+  return 0
+}
+
+main "$@"

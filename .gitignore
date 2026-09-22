@@ -1,0 +1,60 @@
+# Dependency/build output
+node_modules/
+dist/
+dist-ssr/
+*.log
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Secrets and local environment
+.env
+.env.*
+!*.env.example
+*.key
+*.pem
+*.p12
+*.pfx
+
+# Runtime state
+session.json
+state.json
+store/
+*.db
+*.sqlite
+*.sqlite3
+
+# Database and application backups
+*.dump
+*.bak
+backups/
+
+# Generated TLS material
+*.crt
+*.csr
+
+# Editor/OS
+.vscode/
+.idea/
+.DS_Store
+
+# DC Coms development safety copies
+.community-*
+*.before-*
+*.backup-*
+
+# Generated installer/runtime files
+deploy/generated/
+runtime/
+
+# Local installer configuration
+/deploy/install.env
+
+# Release artifacts belong outside the source tree
+/dc-coms-community-*.tar.gz
+/dc-coms-community-*.tar.gz.sha256
+/dc-coms-community-*.manifest.txt
+/dccoms-community-docs-*.tar.gz
+/dccoms-community-docs-*.tar.gz.sha256

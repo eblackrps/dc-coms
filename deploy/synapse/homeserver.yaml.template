@@ -1,0 +1,69 @@
+# Configuration file for Synapse.
+#
+# This is a YAML file: see [1] for a quick introduction. Note in particular
+# that *indentation is important*: all the elements of a list or dictionary
+# should have the same indentation.
+#
+# [1] https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html
+#
+# For more information on how to configure Synapse, including a complete accounting of
+# each option, go to docs/usage/configuration/config_documentation.md or
+# https://element-hq.github.io/synapse/latest/usage/configuration/config_documentation.html
+server_name: "__DC_COMS_FQDN__"
+public_baseurl: "https://__DC_COMS_FQDN__/"
+
+report_stats: false
+
+pid_file: /data/homeserver.pid
+listeners:
+  - port: 8008
+    tls: false
+    type: http
+    x_forwarded: true
+    bind_addresses:
+      - "0.0.0.0"
+
+    resources:
+      - names:
+          - client
+        compress: false
+database:
+  name: psycopg2
+  args:
+    user: "__POSTGRES_USER__"
+    password: "__POSTGRES_PASSWORD__"
+    database: "__POSTGRES_DB__"
+    host: dccoms-postgres
+    port: 5432
+    cp_min: 5
+    cp_max: 10
+
+enable_registration: false
+allow_guest_access: false
+
+registration_shared_secret: "__SYNAPSE_REGISTRATION_SECRET__"
+
+encryption_enabled_by_default_for_room_type: all
+
+federation_domain_whitelist: []
+
+trusted_key_servers: []
+
+url_preview_enabled: false
+
+enable_room_list_search: false
+
+room_list_publication_rules: []
+
+max_upload_size: 100M
+media_store_path: "/data/media_store"
+signing_key_path: "/data/__DC_COMS_FQDN__.signing.key"
+
+media_retention:
+  local_media_lifetime: 60d
+  remote_media_lifetime: 30d
+
+push:
+  enabled: false
+  include_content: false
+# vim:ft=yaml

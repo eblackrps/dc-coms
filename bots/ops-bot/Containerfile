@@ -1,0 +1,24 @@
+FROM docker.io/library/python:3.12-bookworm
+
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+RUN apt-get update \
+    && apt-get install -y \
+       --no-install-recommends \
+       build-essential \
+       libolm-dev \
+    && pip install \
+       --no-cache-dir \
+       "matrix-nio[e2e]==0.26.0" \
+    && apt-get purge -y \
+       build-essential \
+    && apt-get autoremove -y \
+    && rm -rf \
+       /var/lib/apt/lists/*
+
+WORKDIR /app
+
+COPY bot.py /app/bot.py
+
+CMD ["python", "/app/bot.py"]

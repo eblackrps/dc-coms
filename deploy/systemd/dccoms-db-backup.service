@@ -1,0 +1,6 @@
+[Unit]
+Description=DC Coms PostgreSQL Backup
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/dccoms-db-backup.sh

@@ -1,0 +1,40 @@
+[Unit]
+Description=DC Coms Ops Host Metrics Collector
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+Group=root
+
+EnvironmentFile=/etc/dccoms/dccoms-ops-collector.env
+
+ExecStart=/usr/bin/python3 /usr/local/libexec/dccoms-ops-collector.py
+
+Restart=on-failure
+RestartSec=3
+
+UMask=0077
+
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+
+ProtectSystem=strict
+ProtectHome=true
+
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectKernelLogs=true
+ProtectControlGroups=true
+ProtectClock=true
+
+RestrictSUIDSGID=true
+LockPersonality=true
+MemoryDenyWriteExecute=true
+
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+
+[Install]
+WantedBy=multi-user.target

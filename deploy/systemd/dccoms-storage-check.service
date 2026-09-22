@@ -1,0 +1,6 @@
+[Unit]
+Description=DC Coms Storage Capacity Check
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/dccoms-storage-check.sh
