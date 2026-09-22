@@ -106,6 +106,12 @@ case "$DC_COMS_ENABLE_OPS_BOT" in
   *) fail "DC_COMS_ENABLE_OPS_BOT must be true or false" ;;
 esac
 
+[ "$DC_COMS_ENABLE_REMINDER_BOT" = "true" ] ||
+  fail "Community V1 requires Reminder Bot to be enabled."
+
+[ "$DC_COMS_ENABLE_OPS_BOT" = "true" ] ||
+  fail "Community V1 requires DC Ops to be enabled."
+
 case "$DC_COMS_FQDN" in
   *.*) ;;
   *) fail "DC_COMS_FQDN must be a fully-qualified domain name" ;;
@@ -201,6 +207,7 @@ info "Install host packages"
 run dnf install -y \
   podman \
   nginx \
+  rsync \
   python3 \
   openssl \
   curl \
@@ -563,6 +570,12 @@ if [ ! -e /etc/dccoms/.accounts-bootstrapped ]; then
   run touch \
     /etc/dccoms/.accounts-bootstrapped
 fi
+
+info "Create initial PostgreSQL backup"
+
+run systemctl \
+  start \
+  dccoms-db-backup.service
 
 info "Preserve initial administrator credential"
 

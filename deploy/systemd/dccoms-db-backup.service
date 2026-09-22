@@ -1,5 +1,7 @@
 [Unit]
 Description=DC Coms PostgreSQL Backup
+After=dccoms-postgres.service
+Requires=dccoms-postgres.service
 
 [Service]
 Type=oneshot

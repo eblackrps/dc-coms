@@ -14,9 +14,9 @@ test ! -e /etc/dccoms && echo CLEAN
 ## Verify and Extract
 
 ```bash
-sha256sum -c dc-coms-community-v1.0.0-rc2.tar.gz.sha256
-tar -xzf dc-coms-community-v1.0.0-rc2.tar.gz
-cd dc-coms-community-v1.0.0-rc2
+sha256sum -c dc-coms-community-v1.0.0-rc3.tar.gz.sha256
+tar -xzf dc-coms-community-v1.0.0-rc3.tar.gz
+cd dc-coms-community-v1.0.0-rc3
 ./deploy/scripts/release-audit.sh
 ```
 

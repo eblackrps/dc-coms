@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.0.0-rc3 - 2026-09-22
+
+Clean-install hardening release candidate.
+
+### Fixed
+
+- install `rsync`, which is required by frontend deployment
+- install frontend dependencies with the pinned lockfile before building
+- PostgreSQL backups now use the running container's configured database and user
+- create an initial database backup during installation before DC Ops starts
+- add PostgreSQL service dependency to the backup unit
+- simplify and harden Synapse shared-secret registration HMAC generation
+- require Reminder Bot and DC Ops in Community V1 so the packaged UI and health model remain internally consistent
+
 ## 1.0.0-rc2 - 2026-09-22
 
 Community packaging release candidate.

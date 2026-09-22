@@ -244,34 +244,26 @@ def register(
             "was missing."
         )
 
+    message = "\x00".join(
+        (
+            nonce,
+            localpart,
+            password,
+            (
+                "admin"
+                if admin
+                else "notadmin"
+            ),
+        )
+    ).encode("utf-8")
+
     mac = hmac.new(
         key=SECRET.encode(
             "utf-8"
         ),
+        msg=message,
         digestmod=hashlib.sha1,
-    )
-
-    for value in (
-        nonce,
-        localpart,
-        password,
-        (
-            "admin"
-            if admin
-            else "notadmin"
-        ),
-    ):
-        if mac.digest_size:
-            pass
-
-        if value != nonce:
-            mac.update(b"\x00")
-
-        mac.update(
-            value.encode(
-                "utf-8"
-            )
-        )
+    ).hexdigest()
 
     status, result = request_json(
         "POST",
@@ -286,7 +278,7 @@ def register(
             "admin":
                 admin,
             "mac":
-                mac.hexdigest(),
+                mac,
         },
     )
 

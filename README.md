@@ -86,4 +86,4 @@ Do not run `--apply` against an existing DC Coms deployment.
 
 ## Release Status
 
-`1.0.0-rc2` is a release candidate. Source and packaged-artifact sanitization audits have passed. A clean-host install/regression test remains required before final `1.0.0`.
+`1.0.0-rc3` is a release candidate. Source and packaged-artifact sanitization audits have passed. A clean-host install/regression test remains required before final `1.0.0`.

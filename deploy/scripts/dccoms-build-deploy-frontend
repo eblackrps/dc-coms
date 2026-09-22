@@ -19,6 +19,7 @@ main() {
     bash -lc '
       corepack enable &&
       corepack prepare pnpm@12.4.2 --activate &&
+      pnpm install --frozen-lockfile &&
       pnpm build
     '
   then

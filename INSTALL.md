@@ -15,9 +15,9 @@ Community V1 does not automatically request or manage TLS certificates.
 ## Verify and Extract
 
 ```bash
-sha256sum -c dc-coms-community-v1.0.0-rc2.tar.gz.sha256
-tar -xzf dc-coms-community-v1.0.0-rc2.tar.gz
-cd dc-coms-community-v1.0.0-rc2
+sha256sum -c dc-coms-community-v1.0.0-rc3.tar.gz.sha256
+tar -xzf dc-coms-community-v1.0.0-rc3.tar.gz
+cd dc-coms-community-v1.0.0-rc3
 ```
 
 ## Configure
@@ -45,7 +45,7 @@ DC_COMS_WEB_ROOT=/data/dccoms/preview
 DC_COMS_CONFIG_ROOT=/etc/dccoms
 ```
 
-Reminder Bot and DC Ops are enabled by default.
+Reminder Bot and DC Ops are required in Community V1.
 
 ## Preflight
 
