@@ -1,5 +1,16 @@
 # Changelog
 
+## Unreleased
+
+### Documentation
+
+- added a dedicated deployment prerequisites guide
+- rewrote the README around a clear start-to-deploy documentation path
+- expanded installation steps with required inputs, expected results, verification, and failure guidance
+- expanded clean-host release validation into explicit gates
+- expanded troubleshooting by deployment layer
+- clarified immutable release-candidate and final-release procedures
+
 ## 1.0.0-rc3 - 2026-09-22
 
 Clean-install hardening release candidate.
