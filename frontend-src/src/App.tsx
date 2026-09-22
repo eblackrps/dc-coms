@@ -1579,6 +1579,7 @@ function App() {
       accessToken: session.accessToken,
       userId: session.userId,
       deviceId: session.deviceId,
+      timelineSupport: true,
 
       cryptoCallbacks: {
         getSecretStorageKey:
