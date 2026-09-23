@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+### Fixed
+
+- exclude Synapse `e2e_one_time_keys_json` table data from scheduled PostgreSQL backups so restored dumps do not reintroduce stale one-time-key state
+- document safe handling for v1.0.1 and older full database dumps by truncating `e2e_one_time_keys_json` before Synapse starts after restore
+- expand recovery validation to include post-restore encrypted messaging and separate user encrypted-history recovery checks
+
 ## 1.0.1 - 2026-09-23
 
 Packaging and documentation hotfix release.
@@ -51,17 +59,6 @@ Release candidate after successful clean-host installation validation.
 
 - clean installation completed successfully on a fresh supported host
 - RC4 remains subject to exact-artifact clean-install regression, browser regression, backup validation, and recovery validation before final 1.0.0
-
-## Unreleased
-
-### Documentation
-
-- added a dedicated deployment prerequisites guide
-- rewrote the README around a clear start-to-deploy documentation path
-- expanded installation steps with required inputs, expected results, verification, and failure guidance
-- expanded clean-host release validation into explicit gates
-- expanded troubleshooting by deployment layer
-- clarified immutable release-candidate and final-release procedures
 
 ## 1.0.0-rc3 - 2026-09-22
 
