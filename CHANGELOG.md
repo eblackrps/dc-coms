@@ -1,5 +1,22 @@
 # Changelog
 
+## 1.0.1 - 2026-09-23
+
+Packaging and documentation hotfix release.
+
+### Fixed
+
+- generate portable SHA256 files that reference the release archive by filename instead of the build server's absolute path
+- verify the generated checksum during release packaging
+- require `frontend-src/pnpm-lock.yaml` in the release audit because frontend installation uses `pnpm install --frozen-lockfile`
+- remove stale RC3 wording from the installation guide
+- align documented supported operating systems with the installer: Rocky Linux 9, AlmaLinux 9, RHEL 9, and CentOS Stream 9
+
+### Validation scope
+
+- no application runtime code changed from v1.0.0
+- v1.0.1 requires release audit, portable checksum verification, archive extraction, packaged release audit, and installer preflight smoke validation
+
 ## 1.0.0 - 2026-09-23
 
 General-availability release of DC Coms Community V1.
