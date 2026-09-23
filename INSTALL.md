@@ -6,7 +6,7 @@ Read and complete [PREREQUISITES.md](PREREQUISITES.md) before starting.
 
 ## Installation boundaries
 
-Community V1 supports clean installation on Rocky Linux 9, AlmaLinux 9, and compatible RHEL 9 systems.
+Community V1 supports clean installation on Rocky Linux 9, AlmaLinux 9, RHEL 9, and CentOS Stream 9. Other RHEL-compatible distributions are not currently validated by the installer.
 
 The installer:
 
@@ -37,12 +37,12 @@ The installer does not:
 
 Use the release archive, checksum, and manifest from the GitHub Releases page for the version you intend to deploy.
 
-For RC3 the files are:
+For v1.0.1 the files are:
 
 ```text
-dc-coms-community-v1.0.0.tar.gz
-dc-coms-community-v1.0.0.tar.gz.sha256
-dc-coms-community-v1.0.0.manifest.txt
+dc-coms-community-v1.0.1.tar.gz
+dc-coms-community-v1.0.1.tar.gz.sha256
+dc-coms-community-v1.0.1.manifest.txt
 ```
 
 Keep the archive and its `.sha256` file in the same directory.
@@ -52,13 +52,13 @@ Keep the archive and its `.sha256` file in the same directory.
 Run:
 
 ```bash
-sha256sum -c dc-coms-community-v1.0.0.tar.gz.sha256
+sha256sum -c dc-coms-community-v1.0.1.tar.gz.sha256
 ```
 
 Expected:
 
 ```text
-dc-coms-community-v1.0.0.tar.gz: OK
+dc-coms-community-v1.0.1.tar.gz: OK
 ```
 
 Do not continue if checksum verification fails.
@@ -66,8 +66,8 @@ Do not continue if checksum verification fails.
 ## 3. Extract the release
 
 ```bash
-tar -xzf dc-coms-community-v1.0.0.tar.gz
-cd dc-coms-community-v1.0.0
+tar -xzf dc-coms-community-v1.0.1.tar.gz
+cd dc-coms-community-v1.0.1
 ```
 
 Run the package audit before changing anything:
