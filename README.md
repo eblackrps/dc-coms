@@ -5,7 +5,7 @@ DC Coms is a private, browser-based Matrix communication client for small teams.
 
 ## Release status
 
-`1.0.0-rc3` is a release candidate.
+`1.0.0-rc4` is a release candidate.
 
 Source sanitization and packaged-artifact audits have passed. A clean-host install, browser regression, service/security regression, backup verification, and recovery validation are still required before final `1.0.0`.
 
@@ -65,9 +65,9 @@ See [PREREQUISITES.md](PREREQUISITES.md) for the full checklist.
 After prerequisites are complete:
 
 ```bash
-sha256sum -c dc-coms-community-v1.0.0-rc3.tar.gz.sha256
-tar -xzf dc-coms-community-v1.0.0-rc3.tar.gz
-cd dc-coms-community-v1.0.0-rc3
+sha256sum -c dc-coms-community-v1.0.0-rc4.tar.gz.sha256
+tar -xzf dc-coms-community-v1.0.0-rc4.tar.gz
+cd dc-coms-community-v1.0.0-rc4
 
 ./deploy/scripts/release-audit.sh
 

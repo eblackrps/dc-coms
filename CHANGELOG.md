@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.0.0-rc4 - 2026-09-23
+
+Release candidate after successful clean-host installation validation.
+
+### Fixed
+
+- enable Matrix timeline support for Reminder Source context loading
+- preserve the improved deployment prerequisite and installation documentation
+
+### Validation
+
+- clean installation completed successfully on a fresh supported host
+- RC4 remains subject to exact-artifact clean-install regression, browser regression, backup validation, and recovery validation before final 1.0.0
+
 ## Unreleased
 
 ### Documentation

@@ -40,9 +40,9 @@ Use the release archive, checksum, and manifest from the GitHub Releases page fo
 For RC3 the files are:
 
 ```text
-dc-coms-community-v1.0.0-rc3.tar.gz
-dc-coms-community-v1.0.0-rc3.tar.gz.sha256
-dc-coms-community-v1.0.0-rc3.manifest.txt
+dc-coms-community-v1.0.0-rc4.tar.gz
+dc-coms-community-v1.0.0-rc4.tar.gz.sha256
+dc-coms-community-v1.0.0-rc4.manifest.txt
 ```
 
 Keep the archive and its `.sha256` file in the same directory.
@@ -52,13 +52,13 @@ Keep the archive and its `.sha256` file in the same directory.
 Run:
 
 ```bash
-sha256sum -c dc-coms-community-v1.0.0-rc3.tar.gz.sha256
+sha256sum -c dc-coms-community-v1.0.0-rc4.tar.gz.sha256
 ```
 
 Expected:
 
 ```text
-dc-coms-community-v1.0.0-rc3.tar.gz: OK
+dc-coms-community-v1.0.0-rc4.tar.gz: OK
 ```
 
 Do not continue if checksum verification fails.
@@ -66,8 +66,8 @@ Do not continue if checksum verification fails.
 ## 3. Extract the release
 
 ```bash
-tar -xzf dc-coms-community-v1.0.0-rc3.tar.gz
-cd dc-coms-community-v1.0.0-rc3
+tar -xzf dc-coms-community-v1.0.0-rc4.tar.gz
+cd dc-coms-community-v1.0.0-rc4
 ```
 
 Run the package audit before changing anything:
