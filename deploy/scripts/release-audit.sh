@@ -209,6 +209,7 @@ GITHUB-RELEASE.md
 CHANGELOG.md
 LICENSE
 frontend-src/package.json
+frontend-src/pnpm-lock.yaml
 frontend-src/public/config.js
 deploy/install.env.example
 deploy/nginx/dccoms.conf.template
