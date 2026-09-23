@@ -1,5 +1,26 @@
 # Changelog
 
+## 1.0.0 - 2026-09-23
+
+General-availability release of DC Coms Community V1.
+
+### Validation
+
+- clean installation completed successfully on a fresh supported host
+- browser and service regression checks passed
+- backup and restore validation passed
+- release audit passed
+- no functional application changes were introduced after the tested RC4 candidate; this promotion updates release metadata and documentation for GA
+
+### Included
+
+- self-hosted Matrix/Synapse deployment on Rocky Linux 9-family systems
+- encrypted browser chat, direct messages, private channels, replies, edits, deletion, reactions, attachments, search, pins, notifications, drafts, typing indicators, deep links, and mentions
+- account and administrative lifecycle tooling
+- Reminder Bot and DC Ops
+- nightly PostgreSQL backups and recovery documentation
+- SELinux Enforcing deployment with localhost-bound support services
+
 ## 1.0.0-rc4 - 2026-09-23
 
 Release candidate after successful clean-host installation validation.
