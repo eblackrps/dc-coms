@@ -43,10 +43,10 @@ Use the actual release archive and checksum intended for publication.
 For RC3:
 
 ```bash
-sha256sum -c dc-coms-community-v1.0.0-rc4.tar.gz.sha256
+sha256sum -c dc-coms-community-v1.0.0.tar.gz.sha256
 
-tar -xzf dc-coms-community-v1.0.0-rc4.tar.gz
-cd dc-coms-community-v1.0.0-rc4
+tar -xzf dc-coms-community-v1.0.0.tar.gz
+cd dc-coms-community-v1.0.0
 
 ./deploy/scripts/release-audit.sh
 ```
