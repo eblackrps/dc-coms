@@ -12,7 +12,7 @@ The public repository must contain only the sanitized Community source and its c
 - treat a published Git tag as immutable
 - if a published release candidate needs changes, create the next RC rather than moving the old tag
 - test the actual packaged release artifact, not an uncommitted working tree
-- promote final `v1.0.0` only after all validation gates pass
+- publish a GA release only after all required validation gates pass
 
 ## Before committing release changes
 
@@ -122,9 +122,9 @@ Record defects against the tested release version.
 
 If code, installer behavior, required configuration, or release documentation changes after testing begins, cut another RC and retest the affected gates.
 
-## Final v1.0.0
+## General-availability releases
 
-Final `v1.0.0` requires:
+A GA release requires:
 
 - clean-host installation passed
 - browser regression passed
@@ -138,12 +138,12 @@ Final `v1.0.0` requires:
 
 Then:
 
-1. set `VERSION=1.0.0`
+1. set `VERSION` to the intended GA version
 2. update `CHANGELOG.md` and release-status text
-3. rebuild and verify the final artifact
+3. rebuild and verify the exact artifact
 4. commit and push
-5. tag `v1.0.0`
-6. publish the final GitHub release
+5. tag the exact release commit
+6. publish the GitHub release
 7. archive the validation evidence
 
 Recommended GitHub repository protections include protected `main`, review before merging where practical, dependency alerts, secret scanning when available, private vulnerability reporting, and no force pushes to `main`.
