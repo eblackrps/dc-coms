@@ -40,13 +40,13 @@ Expected: both lines report `CLEAN`.
 
 Use the actual release archive and checksum intended for publication.
 
-For RC3:
+For the current v1.0.1 release:
 
 ```bash
-sha256sum -c dc-coms-community-v1.0.0.tar.gz.sha256
+sha256sum -c dc-coms-community-v1.0.1.tar.gz.sha256
 
-tar -xzf dc-coms-community-v1.0.0.tar.gz
-cd dc-coms-community-v1.0.0
+tar -xzf dc-coms-community-v1.0.1.tar.gz
+cd dc-coms-community-v1.0.1
 
 ./deploy/scripts/release-audit.sh
 ```
@@ -283,4 +283,4 @@ The release candidate passes the clean-install gate only when:
 - [ ] browser regression passes
 - [ ] no unresolved release-blocking defects remain
 
-Do not promote to final `1.0.0` until the separate recovery-validation requirement has also been satisfied.
+Do not publish a GA release until the separate recovery-validation requirement has also been satisfied.
