@@ -10,7 +10,10 @@ Use a dedicated server or VM running one of the following:
 
 - Rocky Linux 9
 - AlmaLinux 9
-- RHEL 9 or a compatible RHEL 9-family distribution
+- RHEL 9
+- CentOS Stream 9
+
+Other RHEL-compatible distributions are not currently validated by the Community V1 installer.
 
 The host must use systemd and must support SELinux.
 
@@ -230,7 +233,7 @@ Reminder Bot and DC Ops are required in Community V1.
 
 Do not continue until all applicable items are true:
 
-- [ ] supported RHEL 9-family host
+- [ ] supported Rocky Linux 9, AlmaLinux 9, RHEL 9, or CentOS Stream 9 host
 - [ ] root access
 - [ ] SELinux is Enforcing
 - [ ] system clock is correct
