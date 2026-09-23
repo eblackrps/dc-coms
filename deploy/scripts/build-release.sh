@@ -50,8 +50,15 @@ tar \
   -czf "$ARCHIVE" \
   .
 
-sha256sum "$ARCHIVE" \
-  > "$CHECKSUM"
+(
+  cd "$OUT" || exit 1
+
+  sha256sum "${NAME}.tar.gz" \
+    > "${NAME}.tar.gz.sha256"
+
+  sha256sum -c \
+    "${NAME}.tar.gz.sha256"
+) || exit 1
 
 chmod 0644 \
   "$ARCHIVE" \
