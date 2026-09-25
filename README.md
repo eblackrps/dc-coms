@@ -1,7 +1,9 @@
 # DC Coms
 
-DC Coms is a private, browser-based Matrix communication client for small teams. Community V1 packages the web client, Matrix Synapse, PostgreSQL, nginx, operational services, password-reset tooling, Reminder Bot, and DC Ops into a reproducible Rocky Linux 9-family deployment.
+[![Latest Release](https://img.shields.io/github/v/release/eblackrps/dc-coms)](https://github.com/eblackrps/dc-coms/releases/latest)
+[![License](https://img.shields.io/github/license/eblackrps/dc-coms)](LICENSE)
 
+DC Coms is a private, browser-based Matrix communication client for small teams. Community V1 packages the web client, Matrix Synapse, PostgreSQL, nginx, operational services, password-reset tooling, Reminder Bot, and DC Ops into a reproducible Rocky Linux 9-family deployment.
 
 ## Release status
 
